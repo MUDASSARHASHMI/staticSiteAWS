@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      S3_BUCKET: cfst-3457-7d9d6a5aa33e6c2158145ed3c-nonprodbucket-jlhjyisg44o2
+      BUCKET_NAME: cfst-3457-7d9d6a5aa33e6c2158145ed3c-nonprodbucket-jlhjyisg44o2
     steps:
       - uses: actions/checkout@v2
       - name: Configure AWS Cli credentials
@@ -26,5 +26,5 @@ jobs:
           npm run build
       - name: Deploy to Non-Production bucket
         run: |
-          aws s3 cp public s3://${{ S3_BUCKET }} --recursive --acl public-read
+          aws s3 cp public s3://${{ env.BUCKET_NAME }} --recursive --acl public-read
 
